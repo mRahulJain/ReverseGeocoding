@@ -35,6 +35,7 @@
             android:paddingTop="10dp"
             android:id="@+id/usernameE"
             android:inputType="text"
+            android:theme="@style/loginPageEditText"
             android:maxLength="15"
             android:hint="Username"
             android:layout_gravity="center"

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center"
     android:layout_height="match_parent">
@@ -12,65 +12,111 @@
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="Country Code  "
-                android:layout_marginTop="40dp"
-                android:textColor="@color/colorPrimary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <EditText
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingRight="40dp"
-                android:paddingLeft="40dp"
-                android:id="@+id/countryCode"
-                android:text="91"
-                android:textColor="@color/colorPrimary"
-                android:gravity="center"
-                android:theme="@style/loginPageEditText"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
         <EditText
-            android:layout_marginLeft="30dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:inputType="number"
-            android:layout_marginBottom="10dp"
-            android:id="@+id/phoneNumber"
-            android:maxLength="10"
-            android:paddingBottom="10dp"
-            android:drawableLeft="@drawable/ic_phone"
-            android:drawablePadding="8dp"
-            android:paddingTop="10dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/background_edit_text_login_page"
-            android:hint="10 digits mobile number"
-            android:theme="@style/loginPageEditText"
+            android:padding="10dp"
             android:layout_marginTop="20dp"
+            android:inputType="number"
+            android:id="@+id/phoneNumber"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/background_edit_text_login_page"
+            android:hint="Enter your phone number"
+            android:theme="@style/loginPageEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-        <Button
-            android:paddingLeft="50dp"
-            android:layout_marginBottom="10dp"
-            android:paddingRight="50dp"
-            android:paddingBottom="14dp"
-            android:paddingTop="14dp"
-            android:layout_gravity="center|bottom"
-            android:text="Continue"
-            android:textColor="@color/colorPrimary"
-            android:layout_marginTop="40dp"
-            android:id="@+id/reqOTP"
-            android:textAllCaps="true"
-            android:background="@android:color/transparent"
+        <TextView
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:layout_marginRight="20dp"
+            android:textSize="10sp"
+            android:text="Please enter country code along with your phone number\n
+Eg. 91XXXXXXXXXX"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+        <FrameLayout
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/frameSimple1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:paddingBottom="14dp"
+                android:paddingTop="14dp"
+                android:layout_gravity="center|bottom"
+                android:text="Continue"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/reqOTP"
+                android:textAllCaps="false"
+                android:background="@drawable/background_login_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ProgressBar
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center|bottom"
+                android:theme="@style/loginPageEditText"
+                android:layout_width="40dp"
+                android:layout_height="40dp"/>
+        </FrameLayout>
+        <TextView
+            android:layout_marginTop="50dp"
+            android:id="@+id/textSimple"
+            android:visibility="gone"
+            android:text="Please enter the OTP below."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.goodiebag.pinview.Pinview
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            android:id="@+id/otp"
+            app:textSize="10sp"
+            app:pinWidth="40dp"
+            app:pinHeight="40dp"
+            android:gravity="left"
+            android:layout_gravity="left"
+            app:splitWidth="8dp"
+            app:pinBackground="@drawable/background_edit_text_login_page"
+            app:pinLength="6"
+            app:hint="0"
+            android:visibility="gone"
+            app:cursorVisible="false"
+            app:forceKeyboard="false"
+            app:password="false"
+            app:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </com.goodiebag.pinview.Pinview>
+        <FrameLayout
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="60dp"
+            android:visibility="gone"
+            android:id="@+id/frameSimple"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:paddingBottom="14dp"
+                android:paddingTop="14dp"
+                android:layout_gravity="center|bottom"
+                android:text="Submit"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/proceed"
+                android:textAllCaps="false"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/background_login_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ProgressBar
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center|bottom"
+                android:theme="@style/loginPageEditText"
+                android:layout_width="40dp"
+                android:layout_height="40dp"/>
+        </FrameLayout>
     </LinearLayout>
     <TextView
         android:layout_weight="1"
