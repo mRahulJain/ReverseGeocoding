@@ -35,7 +35,7 @@ Eg. 91XXXXXXXXXX"
             android:layout_height="wrap_content"/>
         <FrameLayout
             android:layout_marginTop="60dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:id="@+id/frameSimple1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">

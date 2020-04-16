@@ -90,7 +90,7 @@ class PhoneAuthFragment : Fragment() {
             .addOnCompleteListener {
                 if(it.isSuccessful) {
                     val intent = Intent(view!!.context, GeoLocationActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                     activity!!.finish()
                 } else {
