@@ -1,0 +1,2 @@
+rootProject.name='ReverseGeocoding'
+include ':app'
