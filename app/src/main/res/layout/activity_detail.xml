@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="20dp"
+    android:layout_height="match_parent"
+    tools:context=".Activities.DetailActivity">
+
+    <TextView
+        android:text="Enter a username"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/username"
+        android:inputType="text"
+        android:maxLength="15"
+        android:hint="username (max length = 15)"
+        android:theme="@style/loginPageEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:text="Enter a password"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:inputType="textPassword"
+        android:hint="enter your password"
+        android:theme="@style/loginPageEditText"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:text="Re-enter the password"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/passwordC"
+        android:layout_width="match_parent"
+        android:hint="enter your password"
+        android:inputType="textPassword"
+        android:theme="@style/loginPageEditText"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:text="Continue"
+        android:textAllCaps="false"
+        android:background="@drawable/background_login_button"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/proceed_details"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

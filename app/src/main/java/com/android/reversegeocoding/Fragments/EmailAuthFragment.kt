@@ -11,6 +11,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.text.bold
 import androidx.core.view.isVisible
+import com.android.reversegeocoding.Activities.CreateAccountActivity
+import com.android.reversegeocoding.Activities.DetailActivity
 import com.android.reversegeocoding.Activities.GeoLocationActivity
 
 import com.android.reversegeocoding.R
@@ -96,10 +98,8 @@ class EmailAuthFragment : Fragment() {
                     view!!.passwordEL.text.toString()).addOnCompleteListener {
                     if(it.isSuccessful) {
                         if(FirebaseAuth.getInstance().currentUser!!.isEmailVerified) {
-                            val intent = Intent(view!!.context, GeoLocationActivity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            val intent = Intent(view!!.context, DetailActivity::class.java)
                             startActivity(intent)
-                            activity!!.finish()
                         } else {
                             Toast.makeText(view!!.context,
                                 "Please verify your mail first",

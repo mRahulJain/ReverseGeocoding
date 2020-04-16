@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import com.android.reversegeocoding.Activities.CreateAccountActivity
+import com.android.reversegeocoding.Activities.DetailActivity
 import com.android.reversegeocoding.Activities.GeoLocationActivity
 
 import com.android.reversegeocoding.R
@@ -89,10 +91,8 @@ class PhoneAuthFragment : Fragment() {
         auth.signInWithCredential(credential as AuthCredential)
             .addOnCompleteListener {
                 if(it.isSuccessful) {
-                    val intent = Intent(view!!.context, GeoLocationActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    val intent = Intent(view!!.context, DetailActivity::class.java)
                     startActivity(intent)
-                    activity!!.finish()
                 } else {
                     Toast.makeText(view!!.context, "${it.exception!!.localizedMessage}", Toast.LENGTH_LONG).show()
                     view!!.proceed.isVisible = true

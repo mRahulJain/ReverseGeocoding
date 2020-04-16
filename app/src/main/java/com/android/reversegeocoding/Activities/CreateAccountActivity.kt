@@ -53,7 +53,7 @@ class CreateAccountActivity : AppCompatActivity() {
         if(googleCount == 0) {
             mAuthListener = FirebaseAuth.AuthStateListener {
                 if(mAuth.currentUser != null) {
-                    val intent = Intent(this, GeoLocationActivity::class.java)
+                    val intent = Intent(this, DetailActivity::class.java)
                     googleCount++
                     prefs.edit {
                         putInt(KEY_GOOGLE_OPEN, googleCount)
@@ -85,8 +85,7 @@ class CreateAccountActivity : AppCompatActivity() {
             if(googleCount != 0) {
                 mAuthListener = FirebaseAuth.AuthStateListener {
                     if(mAuth.currentUser != null) {
-                        val intent = Intent(this, GeoLocationActivity::class.java)
-                        intent.putExtra("password", "")
+                        val intent = Intent(this, DetailActivity::class.java)
                         googleCount++
                         prefs.edit {
                             putInt(KEY_GOOGLE_OPEN, googleCount)
