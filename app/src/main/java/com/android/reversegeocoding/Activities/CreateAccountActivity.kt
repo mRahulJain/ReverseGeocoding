@@ -36,7 +36,7 @@ class CreateAccountActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_account)
 
-        //creating a shared preference to save small instances
+        //creating a shared preference to save google button press count
         val prefs = getPreferences(Context.MODE_PRIVATE)
         googleCount = prefs.getInt(KEY_GOOGLE_OPEN, 0)
 
@@ -65,12 +65,10 @@ class CreateAccountActivity : AppCompatActivity() {
 
             mAuth.addAuthStateListener(mAuthListener)
         }
-
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-
         mGoogleApiClient = GoogleApiClient.Builder(this)
             .enableAutoManage(this, GoogleApiClient.OnConnectionFailedListener {
                 Toast.makeText(this,
@@ -80,6 +78,7 @@ class CreateAccountActivity : AppCompatActivity() {
             .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
             .build()
 
+        //code to execute when user clicks on google log in
         reqGoogle.setOnClickListener {
             type = "google"
             if(googleCount != 0) {

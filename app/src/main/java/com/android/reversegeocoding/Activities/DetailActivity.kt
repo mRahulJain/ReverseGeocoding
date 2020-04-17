@@ -22,6 +22,7 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
+        //fetching data from google firebase database
         var ref = FirebaseDatabase.getInstance().getReference("myUsers")
         ref.addValueEventListener(object : ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
@@ -51,11 +52,13 @@ class DetailActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            //if username exists
             if(usernames.contains(username.text.toString())) {
                 Toast.makeText(this, "Username taken", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
+            //adding data to google firebase database
             var ref = FirebaseDatabase.getInstance().getReference(
                 "myUsers/${auth.currentUser!!.uid}")
             var hashMap =HashMap<String, String>()

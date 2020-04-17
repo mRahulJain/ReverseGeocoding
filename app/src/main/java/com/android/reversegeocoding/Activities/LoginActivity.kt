@@ -28,6 +28,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        //fetching existing usernames
         val ref = FirebaseDatabase.getInstance().getReference("myUsers")
         ref.addValueEventListener(object : ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
@@ -44,9 +45,15 @@ class LoginActivity : AppCompatActivity() {
 
         })
 
+        //shared preferences for existing user entry to the app
+        //this will help in logout process
         val prefs = getPreferences(Context.MODE_PRIVATE)
 
         val source = intent.getStringExtra("source")
+
+        //source = null when LoginActivity is not opened through GeoLocationActivity
+        //source != null when LoginActivity is opened through GeoLocationActivity and we set our
+        //shared preference as false.
         if(source != null) {
             if(source == "login") {
                 prefs.edit() {
@@ -55,15 +62,17 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+        //fetch the shared preference value
         direct = prefs.getBoolean(KEY_DIRECT_OPEN, false)
 
+
+        //check whether any type of user is logged in
         if(auth.currentUser != null) {
             val intent = Intent(this, GeoLocationActivity::class.java)
             intent.putExtra("type", "details")
             startActivity(intent)
             finish()
         }
-
         if(direct) {
             val intent = Intent(this, GeoLocationActivity::class.java)
             intent.putExtra("type", "login")
@@ -85,6 +94,9 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        //code to execute when user clicks on login button
+        //here username is matched first
+        //later we check for password
         login.setOnClickListener {
             if(usernameE.text.toString() == "" ||
                     passwordE.text.toString() == "") {
@@ -109,6 +121,8 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
             }
+
+            //if username is not found
             if(!check) {
                 Toast.makeText(this, "Username doesn't exist", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener

@@ -44,28 +44,19 @@ class GeoLocationActivity : AppCompatActivity(), LocationListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_geo_location)
 
+        //type variable is used fo logout purpose
+        //if type = auth then Firebase.auth.currentUser != null
+        //if type = login then Firebase.auth.currentUser = null
         type = intent.getStringExtra("type")
+
+        //code to execute when user requests geocode
         traceLocation.setOnClickListener {
             checkUserSettingsAndGetLocation()
         }
 
+        //code to execute when user clicks on the logout button
         logout.setOnClickListener {
-            if(auth.currentUser!=null) {
-                val intent = Intent(this, LoginActivity::class.java)
-                intent.putExtra("source", "auth")
-                startActivity(intent)
-                auth.signOut()
-                finish()
-                return@setOnClickListener
-            }
-
-            if(type == "login") {
-                val intent = Intent(this, LoginActivity::class.java)
-                intent.putExtra("source", "login")
-                startActivity(intent)
-                finish()
-                return@setOnClickListener
-            }
+            logout()
         }
     }
 
@@ -101,22 +92,14 @@ class GeoLocationActivity : AppCompatActivity(), LocationListener {
         } catch (e : Exception) {
             Log.e("PUI", "${e.printStackTrace()}")
         }
-
-
         return myCity
     }
 
-    override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
-    }
-
-    override fun onProviderEnabled(p0: String?) {
-    }
-
-    override fun onProviderDisabled(p0: String?) {
-    }
-
+    //this function will check whether the location access permission allowed to the app or not
+    //if the location is not permitted the user will be logged out
+    //if the location is permitted then it will call startLocationUpdates()
     private fun checkAndStartLocationUpdates() {
-        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
             != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(
                 this,
@@ -131,6 +114,10 @@ class GeoLocationActivity : AppCompatActivity(), LocationListener {
         }
     }
 
+    //this function will check the location setting
+    //if the location of the device is off then if will prompt an alert for the user to switch it on
+    //if the location is on then it will call checkAndStartLocationUpdates()
+    //if the user denies to switch on the location the he will logged out
     private fun checkUserSettingsAndGetLocation(){
         val locationManager = this.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
@@ -165,20 +152,7 @@ class GeoLocationActivity : AppCompatActivity(), LocationListener {
                         }
                     }
                     Toast.makeText(this,"Please login again", Toast.LENGTH_LONG).show()
-                    if(auth.currentUser!=null) {
-                        val intent = Intent(this, LoginActivity::class.java)
-                        intent.putExtra("source", "auth")
-                        startActivity(intent)
-                        auth.signOut()
-                        finish()
-                    }
-
-                    if(type == "login") {
-                        val intent = Intent(this, LoginActivity::class.java)
-                        intent.putExtra("source", "login")
-                        startActivity(intent)
-                        finish()
-                    }
+                    logout()
                 }.create()
             alertDialog.setCancelable(false)
             alertDialog.show()
@@ -217,26 +191,14 @@ class GeoLocationActivity : AppCompatActivity(), LocationListener {
         }
     }
 
+    //this code will be executed as per users command on allowing or not the location access
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if(requestCode == LOCATION_REQ){
             for(i in grantResults.indices){
                 if (grantResults[i] != PackageManager.PERMISSION_GRANTED){
                     Toast.makeText(this,"You are logged out for not allowing permission", Toast.LENGTH_LONG).show()
-                    if(auth.currentUser!=null) {
-                        val intent = Intent(this, LoginActivity::class.java)
-                        intent.putExtra("source", "auth")
-                        startActivity(intent)
-                        auth.signOut()
-                        finish()
-                    }
-
-                    if(type == "login") {
-                        val intent = Intent(this, LoginActivity::class.java)
-                        intent.putExtra("source", "login")
-                        startActivity(intent)
-                        finish()
-                    }
+                    logout()
                     return
                 }
             }
@@ -262,8 +224,35 @@ class GeoLocationActivity : AppCompatActivity(), LocationListener {
         )
     }
 
+    //function to be executed when user destroys the app
     override fun onDestroy() {
         locationManager?.removeUpdates(this)
         super.onDestroy()
     }
+
+    //function to be executed for logout purpose
+    private fun logout() {
+        if(auth.currentUser!=null) {
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.putExtra("source", "auth")
+            startActivity(intent)
+            auth.signOut()
+            finish()
+            return
+        }
+
+        if(type == "login") {
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.putExtra("source", "login")
+            startActivity(intent)
+            finish()
+            return
+        }
+    }
+
+    override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {}
+
+    override fun onProviderEnabled(p0: String?) {}
+
+    override fun onProviderDisabled(p0: String?) {}
 }
