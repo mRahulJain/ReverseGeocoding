@@ -5,56 +5,93 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_margin="20dp"
     android:layout_height="match_parent"
     tools:context=".Activities.DetailActivity">
 
-    <TextView
-        android:text="Enter a username"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:id="@+id/username"
-        android:inputType="text"
-        android:maxLength="15"
-        android:hint="username (max length = 15)"
-        android:theme="@style/loginPageEditText"
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@drawable/create_account_background"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:text="Enter a password"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:id="@+id/password"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/geotag_white"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_gravity="center"
+            android:text="Please enter the details below"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_margin="20dp"
         android:layout_width="match_parent"
-        android:inputType="textPassword"
-        android:hint="enter your password"
-        android:theme="@style/loginPageEditText"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Enter a username"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/username"
+            android:inputType="text"
+            android:padding="10dp"
+            android:background="@drawable/background_edit_text_login_page"
+            android:maxLength="15"
+            android:hint="username (max length = 15)"
+            android:theme="@style/loginPageEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="Enter a password"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:background="@drawable/background_edit_text_login_page"
+            android:inputType="textPassword"
+            android:hint="enter your password"
+            android:theme="@style/loginPageEditText"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="Re-enter the password"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/passwordC"
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:background="@drawable/background_edit_text_login_page"
+            android:hint="enter your password"
+            android:inputType="textPassword"
+            android:theme="@style/loginPageEditText"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:text="Continue"
+            android:textAllCaps="false"
+            android:background="@drawable/background_login_button"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:layout_marginTop="30dp"
+            android:id="@+id/proceed_details"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
     <TextView
-        android:text="Re-enter the password"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="3dp"
+        android:gravity="bottom"
+        android:layout_gravity="bottom|center"
+        android:text="Your data is safe with us"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:id="@+id/passwordC"
-        android:layout_width="match_parent"
-        android:hint="enter your password"
-        android:inputType="textPassword"
-        android:theme="@style/loginPageEditText"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:text="Continue"
-        android:textAllCaps="false"
-        android:background="@drawable/background_login_button"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:layout_marginTop="30dp"
-        android:id="@+id/proceed_details"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"/>
 </LinearLayout>
